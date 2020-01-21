@@ -7,7 +7,7 @@ Wagtail 1.12 release notes
     :depth: 1
 
 
-Wagtail 1.12 is designated a Long Term Support (LTS) release. Long Term Support releases will continue to receive maintenance updates as necessary to address security and data-loss related issues, up until the next LTS release (typically a period of 8 months). Please note that Wagtail 1.12 will be the last LTS release to support Python 2.
+Wagtail 1.12 is designated a Long Term Support (LTS) release. Long Term Support releases will continue to receive maintenance updates as necessary to address security and data-loss related issues, up until the next LTS release (typically a period of 8 months).
 
 
 What's new
@@ -62,6 +62,8 @@ StreamField now defaults to ``blank=False``
 
 StreamField now respects the ``blank`` field setting; when this is false, at least one block must be supplied for the field to pass validation. To match the behaviour of other model fields, ``blank`` defaults to ``False``; if you wish to allow a StreamField to be left empty, you must now add ``blank=True`` to the field.
 
+When passing an explicit ``StreamBlock`` as the top-level block of a StreamField definition, note that the StreamField's ``blank`` keyword argument always takes precedence over the block's ``required`` property, including when it is left as the default value of ``blank=False``. Consequently, setting ``required=False`` on a top-level ``StreamBlock`` has no effect.
+
 
 Old configuration settings for embeds are deprecated
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -72,7 +74,7 @@ The configuration settings ``WAGTAILEMBEDS_EMBED_FINDER`` and ``WAGTAILEMBEDS_EM
 Registering custom hallo.js plugins directly is deprecated
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The ability to enable / disable ``hallo.js`` plugins by calling ``registerHalloPlugin`` or modifying the ``halloPlugins`` list has been deprecated, and will be removed in Wagtail 1.14. The recommended way of customising the hallo.js editor is now through :ref:`rich text features <rich_text_features>`. For details of how to define a hallo.js plugin as a rich text feature, see :ref:`extending_wysiwyg`.
+The ability to enable / disable ``hallo.js`` plugins by calling ``registerHalloPlugin`` or modifying the ``halloPlugins`` list has been deprecated, and will be removed in Wagtail 1.14. The recommended way of customising the hallo.js editor is now through :ref:`rich text features <rich_text_features>`. For details of how to define a hallo.js plugin as a rich text feature, see :doc:`../advanced_topics/customisation/extending_hallo`.
 
 
 Custom ``get_admin_display_title`` methods should use ``draft_title``
